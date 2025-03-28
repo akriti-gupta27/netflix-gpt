@@ -5,7 +5,7 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfil
 import { auth } from "../utils/firebase.js";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice.js";
-
+import { LOGO, photoURL } from "../utils/constants.js";
 
 const Login = () => {
 
@@ -36,7 +36,7 @@ const Login = () => {
             // Signed up 
             const user = userCredential.user;
             updateProfile(user, {
-                displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/177637451?v=4"
+                displayName: name.current.value, photoURL: photoURL
               }).then(() => {
                 // Profile updated!
                 const {uid, email, displayName, photoURL} = auth.currentUser;
@@ -72,7 +72,7 @@ const Login = () => {
     <div>
       <Header/>
       <div className="absolute">
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/fbf440b2-24a0-49f5-b2ba-a5cbe8ea8736/web/IN-en-20250324-TRIFECTA-perspective_d7c906ec-0531-47de-8ece-470d5061c88a_small.jpg" alt="logo"/>
+        <img src= {LOGO} alt="logo"/>
       </div>
       <form onSubmit={(e) => e.preventDefault()} className="text-white w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 rounded-lg bg-opacity-80">
         <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
