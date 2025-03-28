@@ -25,10 +25,10 @@ const Body = () => {
     useEffect(()=> {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-              const {uid, email, displayName} = user;
+              const {uid, email, displayName, photoURL} = user;
               //Sign in/ sign up case
               //update the store
-              dispatch(addUser({uid: uid, email: email, displayName: displayName}))
+              dispatch(addUser({uid: uid, email: email, displayName: displayName, photoURL:photoURL}))
             } else {
               // User is signed out
               dispatch(removeUser());
