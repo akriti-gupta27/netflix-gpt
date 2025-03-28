@@ -10,7 +10,7 @@ import { addUser, removeUser } from "../utils/userSlice"
 const Header = () => {
 
   const navigate = useNavigate();
-
+ 
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user)
@@ -24,7 +24,7 @@ const Header = () => {
   }
 
   useEffect(()=> {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
           const {uid, email, displayName, photoURL} = user;
           //Sign in/ sign up case
@@ -37,6 +37,7 @@ const Header = () => {
           navigate("/");
         }
       });
+      return () => unsubscribe(); // when component unmount then this will be called
     },[])
 
   return (
